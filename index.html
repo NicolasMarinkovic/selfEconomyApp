@@ -18,33 +18,34 @@
     </div>
 
     <div class="mainContent">
-        <form>
-            <div class="transaction">
 
-                <div class="formulary">
-                    <p>Tipo de transacción :</p>
-                    <input id="ingreso" type="radio"></input>
-                    <label for="ingreso">Ingreso</label>
-                    <input id="egreso" type="radio"></input>
-                    <label for="egreso">Egreso</label>
-                </div>
-                <div class="formulary">
-                    <label for="transactionDescription">Descripción</label>
-                    <input id="transactionDescription" type="text"></input>
-                </div>
-                <div class="formulary">
-                    <label for="transactionAmount">Monto</label>
-                    <input id="transactionAmount" type="number"></input>
-                </div>
-                <div class="formulary">
-                    <label for="transactionCategory">Categoría</label>
-                    <input id="transactionCategory" type="text"></input>
-                </div>
-                <div class="formulary">
-                    <button id="buttonAdd">Agregar</button>
-                </div>
+        <form id="transactionForm">
+
+            <div class="formulary">
+                <p>Tipo de transacción :</p>
+                <input id="ingreso" name="typeSelector" type="radio"></input>
+                <label for="ingreso">Ingreso</label>
+                <input id="egreso" name="typeSelector" type="radio"></input>
+                <label for="egreso">Egreso</label>
             </div>
+            <div class="formulary">
+                <label for="transactionDescription">Descripción</label>
+                <input id="transactionDescription" name="transactionDescription" type="text"></input>
+            </div>
+            <div class="formulary">
+                <label for="transactionAmount">Monto</label>
+                <input id="transactionAmount" name="transactionAmount" type="number"></input>
+            </div>
+            <div class="formulary">
+                <label for="transactionCategory">Categoría</label>
+                <input id="transactionCategory" name="transactionCategory" type="text"></input>
+            </div>
+            <div class="formulary">
+                <button id="buttonAdd">Agregar</button>
+            </div>
+
         </form>
+
     </div>
 
     <div class="mainTable">
