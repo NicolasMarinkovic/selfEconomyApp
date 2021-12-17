@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(248, 221, 221);
+}
+
+.mainHeader h1 {
+    text-align: center;
+}
+
+.transaction {
+    text-align: center;
+    background-color: rgb(252, 237, 237);
+    margin: 0px 100px 0px 100px;
+    padding: 0.1px 0px 5px 0px;
+}
+
+.formulary {
+    margin-top: 5px;
+}
+
+#buttonAdd {
+    font-style: italic;
+    font-size: 100%;
+    background-color: rgb(248, 221, 221);
+}
+
+.mainTable table {
+    text-align: center;
+    margin: 50px auto;
+    /* 50px is margin Vertical and auto is Horizontal */
+}
+
+.mainTable table,
+td,
+th {
+    border: solid rgb(248, 150, 150) 1px;
+}
