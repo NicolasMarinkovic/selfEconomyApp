@@ -23,9 +23,9 @@
 
             <div class="formulary">
                 <p>Tipo de transacción :</p>
-                <input id="ingreso" name="typeSelector" type="radio"></input>
+                <input id="ingreso" name="transactionType" type="radio" value="Ingreso"></input> <!-- Para que seleccione solo uno de los dos botones hay que ponerle el mismo name -->
                 <label for="ingreso">Ingreso</label>
-                <input id="egreso" name="typeSelector" type="radio"></input>
+                <input id="egreso" name="transactionType" type="radio" value="Egreso"></input>
                 <label for="egreso">Egreso</label>
             </div>
             <div class="formulary">
@@ -49,25 +49,14 @@
     </div>
 
     <div class="mainTable">
-        <table>
+        <table id="transactionTable">
             <tr>
-                <th>Tipo</th>
+                <th>Tipo</th>   <!--  |th-> table header|   |td-> table DATA|  -->
                 <th>Descripción</th>
                 <th>Monto</th>
                 <th>Categoría</th>
             </tr>
-            <tr>
-                <td>Ingreso</td>
-                <td>Sueldo</td>
-                <td>1000</td>
-                <td>Trabajo</td>
-            </tr>
-            <tr>
-                <td>Egreso</td>
-                <td>Comida</td>
-                <td>200</td>
-                <td>Basico</td>
-            </tr>
+
         </table>
     </div>
 
