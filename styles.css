@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(248, 221, 221);
+    background-color: rgb(211, 206, 206)
 }
 
 .mainHeader h1 {
@@ -16,9 +16,16 @@ body {
     /* 50px is margin Vertical and auto is Horizontal */
 }
 
-.mainTable table,
-td,
-th {
+.mainTable table {
+    border: solid rgb(248, 150, 150) 3px;
+}
+
+.mainTable th {
+    border: solid rgb(248, 150, 150) 2px;
+    font-size: 18px;
+}
+
+.mainTable td {
     border: solid rgb(248, 150, 150) 1px;
 }
 
