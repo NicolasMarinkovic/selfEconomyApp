@@ -1,16 +1,8 @@
 const form = document.getElementById("transactionForm");
 const tableElement = document.getElementById("transactionTable");
 
-form.addEventListener("submit", function(event) { // El evento submit es el que hace el navegador por defecto que recarga la pag cuando tocas un botón.
-    event.preventDefault(); // preventDefault cancela el comportamiento que tiene el navegador por defecto, con respecto al submit.
-
-    let transactionFormData = new FormData(form); //Form es el elemento a partir del cual se va a recibir esa CLAVE - VALOR
-    let transactionObject = convertFormData(transactionFormData);
-    saveTransactionObject(transactionObject);
-    insertRowTransaction(transactionObject);
-    form.reset();
-});
-
+// Primer evento de la pagina cada vez que se carga.
+// Toma lo que hay en el local storage y lo presenta 1x1
 document.addEventListener("DOMContentLoaded", function(event) {
     let transactionObjArr = JSON.parse(localStorage.getItem("transactionData"))
     if (transactionObjArr != null) {
@@ -21,14 +13,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 });
 
+// El evento submit es el que hace el navegador por defecto que recarga la pag cuando tocas un botón.
+form.addEventListener("submit", function(event) {
+    event.preventDefault(); // preventDefault cancela el comportamiento que tiene el navegador por defecto, con respecto al submit.
+
+    let transactionFormData = new FormData(form); //Form es el elemento a partir del cual se va a recibir esa CLAVE - VALOR
+    let transactionObject = convertFormData(transactionFormData);
+    saveTransactionObject(transactionObject);
+    insertRowTransaction(transactionObject);
+    form.reset();
+});
+
+// Recibe el ultimo nro de transaccion y le suma uno. Sirve para que cada fila que agreguemos tenga un id unico
 function getNewTransactionId() {
     let lastTransactionId = localStorage.getItem("lastTransactionId") || "-1";
     let newTransactionId = JSON.parse(lastTransactionId) + 1;
     localStorage.setItem("lastTransactionId", JSON.stringify(newTransactionId));
     return newTransactionId;
-
 }
 
+// Recibe el formulario que ingresamos y lo transformamos en un objeto.
 function convertFormData(transactionFormData) {
     let transactionType = transactionFormData.get("transactionType");
     let transactionDescription = transactionFormData.get("transactionDescription");
@@ -44,15 +48,15 @@ function convertFormData(transactionFormData) {
     }
 }
 
+//transactionObject = convertFormData(transactionFormData); Guardo el objeto obtenido de la función anterior.
 function saveTransactionObject(transactionObject) {
-
-    let myTransactionArray = JSON.parse(localStorage.getItem("transactionData")) || []; //EN CASO QUE NO HAYA NADA EN EL LOCAL STORAGE PONGO UN ARRAY VACÍO.
+    let myTransactionArray = JSON.parse(localStorage.getItem("transactionData")) || [];
+    //EN CASO QUE NO HAYA NADA EN EL LOCAL STORAGE PONGO UN ARRAY VACÍO.
     myTransactionArray.push(transactionObject);
-    // Convierto mi array de transacciones a JSON
     let transactionArrayJSON = JSON.stringify(myTransactionArray);
-    // Guardo mi array en el local storage
+    // Convierto mi array de transacciones a JSON
     localStorage.setItem("transactionData", transactionArrayJSON);
-
+    // Guardo mi array en el local storage
 }
 
 // Le paso el id de la transaction que quiere eliminar
@@ -68,6 +72,7 @@ function deleteTransactionObject(transactionId) {
 
 }
 
+//Agrego los textContent de las filas haciendo referencia a los objetos antes creados.
 function insertRowTransaction(transactionObject) {
 
     let transactionTableRef = document.getElementById("transactionTable");
@@ -93,11 +98,13 @@ function insertRowTransaction(transactionObject) {
 
 }
 
+//Agrego botón de eliminar y agrega el event listener que lo borra del html y local storage
 function insertDeleteButton(newTransactionRowRef) {
     let newDeleteCell = newTransactionRowRef.insertCell(4);
-    let deleteButton = document.createElement("button");
+    let deleteButton = document.createElement("button"); // Creo el elemento
     deleteButton.textContent = "Eliminar";
     newDeleteCell.appendChild(deleteButton);
+    //appendChild inserta un nuevo nodo dentro de la estructura DOM de un documento
 
     deleteButton.addEventListener("click", () => {
         let transactionRow = event.target.parentNode.parentNode;
