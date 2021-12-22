@@ -25,6 +25,7 @@ function getNewTransactionId() {
     let lastTransactionId = localStorage.getItem("lastTransactionId") || "-1";
     let newTransactionId = JSON.parse(lastTransactionId) + 1;
     localStorage.setItem("lastTransactionId", JSON.stringify(newTransactionId));
+    return newTransactionId;
 
 }
 
@@ -54,9 +55,16 @@ function saveTransactionObject(transactionObject) {
 
 }
 
+// Le paso el id de la transaction que quiere eliminar
 function deleteTransactionObject(transactionId) {
-    let transactionObjArr = JSON.parse(localStorage.getItem("transactionData"))
-
+    let transactionObjArr = JSON.parse(localStorage.getItem("transactionData"));
+    let transactionIndexInArray = transactionObjArr.findIndex(element => element.transactionId === transactionId);
+    // Busco el índice/posición del id que proximamente será borrado y lo guardo en una variable.
+    transactionObjArr.splice(transactionIndexInArray, 1);
+    //Splice sirve para borrar un elemento. El 1 es para que borre solo 1.
+    let transactionArrayJSON = JSON.stringify(transactionObjArr);
+    // Convierto nuevamente a Json y guardo el array en el local storage
+    localStorage.setItem("transactionData", transactionArrayJSON);
 
 }
 
@@ -64,9 +72,12 @@ function insertRowTransaction(transactionObject) {
 
     let transactionTableRef = document.getElementById("transactionTable");
     let newTransactionRowRef = transactionTableRef.insertRow(-1);
+    newTransactionRowRef.setAttribute("data-transaction-id", transactionObject["transactionId"]);
+    // le agrego al html el data attribute del id para despues poder borrarlo
 
     let newTypeCellRef = newTransactionRowRef.insertCell(0);
     newTypeCellRef.textContent = transactionObject["transactionType"];
+    // El objeto toma el parametro de la etiqueta Name
 
     newTypeCellRef = newTransactionRowRef.insertCell(1);
     newTypeCellRef.textContent = transactionObject["transactionDescription"];
@@ -78,6 +89,8 @@ function insertRowTransaction(transactionObject) {
     newTypeCellRef.textContent = transactionObject["transactionCategory"];
 
     insertDeleteButton(newTransactionRowRef);
+
+
 }
 
 function insertDeleteButton(newTransactionRowRef) {
@@ -87,8 +100,11 @@ function insertDeleteButton(newTransactionRowRef) {
     newDeleteCell.appendChild(deleteButton);
 
     deleteButton.addEventListener("click", () => {
-        event.target.parentNode.parentNode.remove();
+        let transactionRow = event.target.parentNode.parentNode;
+        let transactionId = transactionRow.getAttribute("data-transaction-id");
+        transactionRow.remove(); // Lo borro del HTML
         // El tr es el padre del td que es el padre del button, por eso doble parentNode.
-    });
 
+        deleteTransactionObject(transactionId); //Lo borro del Local Storage
+    });
 }
