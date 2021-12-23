@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App de mi economia</title>
-    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/styles.css" type="text/css">
+
 </head>
 
 <body>
@@ -17,54 +20,75 @@
         </header>
     </div>
 
-    <div class="mainContent">
+    <div class="row">
 
-        <form id="transactionForm">
+        <div class="col l5 offset-l1 s12" id="mainTable">
+            <table id="transactionTable" data-transaction-id="1234">
+                <!-- El data atribute es un atributo personalizado para guardar datos internos de nuestro sistema. Se define de forma data- -->
+                <caption><u>Historial de transacciones</u></caption>
+                <tr>
+                    <th>Tipo</th>
+                    <!--  |th-> table header|   |td-> table DATA|  -->
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                    <th>Categoría</th>
+                    <th></th>
+                </tr>
 
-            <div class="formulary">
-                <p>Tipo de transacción :</p>
-                <input id="ingreso" name="transactionType" type="radio" value="Ingreso" checked></input>
-                <!-- Para que seleccione solo uno de los dos botones hay que ponerle el mismo name -->
-                <label for="ingreso">Ingreso</label>
-                <input id="egreso" name="transactionType" type="radio" value="Egreso"></input>
-                <label for="egreso">Egreso</label>
-            </div>
-            <div class="formulary">
-                <label for="transactionDescription">Descripción</label>
-                <input id="transactionDescription" name="transactionDescription" type="text"></input>
-            </div>
-            <div class="formulary">
-                <label for="transactionAmount">Monto</label>
-                <input id="transactionAmount" name="transactionAmount" type="number"></input>
-            </div>
-            <div class="formulary">
-                <label for="transactionCategory">Categoría</label>
-                <input id="transactionCategory" name="transactionCategory" type="text"></input>
-            </div>
-            <div class="formulary">
-                <button id="buttonAdd">Agregar</button>
-            </div>
+            </table>
+        </div>
 
-        </form>
+        <div class="col l5 s12" id="mainContent">
+            <form id="transactionForm">
+
+                <div class="formulary">
+                    <p>Tipo de transacción :</p>
+                    <p>
+                        <label>
+                                <input required id="ingreso" value="Ingreso" class="with-gap" name="transactionType" type="radio" checked />
+                                <span>Ingreso</span>
+                            </label>
+                        <label>
+                                <input id="egreso" value="Egreso" class="with-gap" name="transactionType" type="radio"/>
+                                <span>Egreso</span>
+                            </label>
+                    </p>
+                </div>
+                <div class="input-field col s6">
+                    <label for="transactionDescription">Descripción</label>
+                    <input required id="transactionDescription" name="transactionDescription" class="validate" type="text"></input>
+                </div>
+                <div class="input-field col s6">
+                    <label for="transactionAmount">Monto</label>
+                    <input required id="transactionAmount" name="transactionAmount" class="validate" type="number" min="0"></input>
+                </div>
+                <label id="titleCategory" for="transactionCategory">Categoría</label>
+                <div>
+                    <div class="input-field col s12">
+                        <select required class="browser-default" id="transactionCategory" name="transactionCategory">
+                            <option value="Trabajo">Trabajo</option>
+                            <option value="Auto">Auto</option>
+                            <option value="Comida">Comida</option>
+                            <option value="Tecnologia">Tecnologia</option>
+                            <option value="Gastos Varios">Gastos Varios</option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="addButton">
+                    <button class="btn waves-effect waves-light" type="submit" name="action" id="buttonAdd">Agregar
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+
+            </form>
+        </div>
 
     </div>
 
-    <div class="mainTable">
-        <table id="transactionTable" data-transaction-id="1234">
-            <!-- El data atribute es un atributo personalizado para guardar datos internos de nuestro sistema. Se define de forma data- -->
 
-            <tr>
-                <th>Tipo</th>
-                <!--  |th-> table header|   |td-> table DATA|  -->
-                <th>Descripción</th>
-                <th>Monto</th>
-                <th>Categoría</th>
-            </tr>
-
-        </table>
-    </div>
-
-    <script src="/main.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="resources/js/main.js" type="text/javascript"></script>
 </body>
 
 </html>

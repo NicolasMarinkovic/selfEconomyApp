@@ -1,0 +1,49 @@
+body {
+    background-color: rgb(211, 206, 206)
+}
+
+.mainHeader h1 {
+    text-align: center;
+}
+
+.input-field {
+    margin-top: 5px;
+}
+
+#mainTable table {
+    text-align: center;
+    margin: 50px auto;
+    /* 50px is margin Vertical and auto is Horizontal */
+}
+
+#mainTable table {
+    border: solid rgb(90, 219, 180) 3px;
+}
+
+#mainTable th {
+    border: solid rgb(100, 219, 180) 2px;
+    font-size: 18px;
+}
+
+#mainTable td {
+    border: solid rgb(113, 219, 180) 1px;
+}
+
+#transactionForm {
+    text-align: center;
+    margin: 50px 0px 0px 0px;
+    padding: 0.1px 0px 5px 0px;
+}
+
+#transactionCategory {
+    background-color: rgb(211, 206, 206);
+    border: solid rgb(113, 219, 180) 2px;
+}
+
+#titleCategory {
+    font-size: 16px;
+}
+
+.addButton {
+    margin-top: 10px;
+}
